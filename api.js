@@ -42,6 +42,18 @@ router.post('/delete',(req,res)=>
         console.log('deleted')
     })
 })
+router.post('/deletegc',(req,res)=>
+{   const data=req.body
+    const user=new User1(data)
+    User1.update({},{$pull:{contact:data}},(error,data1)=>
+    {
+        if(error)
+        res.status(401).send('error')
+        else
+        res.status(200).send(data1)
+        console.log('deleted')
+    })
+})
 router.post('/update',(req,res)=>
 {   const data=req.body
     const user=new User(data)
