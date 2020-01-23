@@ -97,38 +97,5 @@ if(error)
     })
 
 })
-router.post('/userdata',(req,res)=>
-{
-    const data=req.body
-    User1.findOne({username:data.username},(error,data)=>
-    {
-        if(error)
-        {
-            console.log("login error")
-        }
-        else
-        {
-            res.status(200).send(data);
-            console.log("connect h to ha")
-        }
-    })
-}
 
-)
-router.post('/usersubs',(req,res)=>{
-    const data=req.body
-    User2.findOne({username:data.username},(error,data1)=>
-    {
-        if(error)
-        {
-            console.log("login error 2")
-        }
-        else
-        {
-            res.status(200).send(data1);
-            console.log(data1)
-            console.log("connect h to ha 2")
-        }
-    })
-})
 module.exports=router
