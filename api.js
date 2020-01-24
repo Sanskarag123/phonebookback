@@ -33,6 +33,7 @@ router.post('/contact',(req,res)=>
 router.post('/delete',(req,res)=>
 {   const data=req.body
     const user=new User(data)
+    
     User.remove({First:data.First},{justOne: true},(error,data1)=>
     {
         if(error)
@@ -40,6 +41,19 @@ router.post('/delete',(req,res)=>
         else
         res.status(200).send(data1)
         console.log('deleted')
+    })
+    
+})
+router.post('/deletegrp',(req,res)=>
+{   const data=req.body
+    const user=new User1(data)
+    User1.remove({groupname:data.groupname},{justOne: true},(error,data1)=>
+    {
+        if(error)
+        res.status(401).send('error')
+        else
+        res.status(200).send(data1)
+        console.log('deleted group')
     })
 })
 router.post('/deletegc',(req,res)=>
@@ -104,6 +118,21 @@ if(error)
     console.log("error ");
 }else
 {console.log("group created");
+    res.status(200).send(data);
+}
+    })
+
+})
+router.post('/addtogrp',(req,res)=>{
+    const data1=req.body
+    const user=new User1(data1)
+    User1.update({groupname:data1.groupname},{$push:{contact:data1.contact}},(error,data)=>
+    {
+if(error)
+{
+    console.log("error ");
+}else
+{console.log("group updated");
     res.status(200).send(data);
 }
     })
